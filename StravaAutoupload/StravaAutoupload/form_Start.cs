@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StravaAutoupload {
-    public partial class Form1 : Form {
-        public Form1() {
+    public partial class Form_Start : Form {
+
+        private DriveInfo _selectedDevice;
+
+        public Form_Start() {
             InitializeComponent();
 
             ConfigureForm();
@@ -35,10 +39,19 @@ namespace StravaAutoupload {
         }
 
         private void btn_SearchForDevices_Click(object sender, EventArgs e) {
-            MessageBox.Show("No devices detected", "Strava Autoupload - Search for Connected Devices", 
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
+            var connectedDevices = FileUtils.GetListOfConnectedDevices();
 
+            if (connectedDevices == null || connectedDevices.Count < 1) {
+                MessageBox.Show("No devices detected.", "Strava Autoupload - Search for Connected Devices",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else {
+                Form_SelectDevice selectDeviceForm = new Form_SelectDevice(connectedDevices);
+                selectDeviceForm.ShowDialog();
+                _selectedDevice = selectDeviceForm.GetSelectedDevice();
+                selectDeviceForm.Dispose();
+            }
+        }
 
     }
 }

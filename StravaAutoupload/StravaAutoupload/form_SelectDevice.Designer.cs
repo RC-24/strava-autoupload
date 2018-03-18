@@ -1,5 +1,5 @@
 ﻿namespace StravaAutoupload {
-    partial class Form1 {
+    partial class Form_SelectDevice {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,36 +23,33 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
-            this.btn_SearchForDevices = new System.Windows.Forms.Button();
+            this.label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btn_SearchForDevices
+            // label
             // 
-            this.btn_SearchForDevices.Location = new System.Drawing.Point(189, 48);
-            this.btn_SearchForDevices.Name = "btn_SearchForDevices";
-            this.btn_SearchForDevices.Size = new System.Drawing.Size(183, 23);
-            this.btn_SearchForDevices.TabIndex = 0;
-            this.btn_SearchForDevices.Text = "Search for connected devices";
-            this.btn_SearchForDevices.UseVisualStyleBackColor = true;
-            this.btn_SearchForDevices.Click += new System.EventHandler(this.btn_SearchForDevices_Click);
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(119, 9);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(29, 13);
+            this.label.TabIndex = 1;
+            this.label.Text = "label";
             // 
-            // Form1
+            // Form_SelectDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 550);
-            this.Controls.Add(this.btn_SearchForDevices);
-            this.Name = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.label);
+            this.Name = "Form_SelectDevice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "form_SelectDevice";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_SearchForDevices;
+        private System.Windows.Forms.Label label;
     }
 }
-
