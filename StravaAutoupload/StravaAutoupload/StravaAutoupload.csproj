@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileUtils.cs" />
+    <Compile Include="Form_SelectActivities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SelectActivities.Designer.cs">
+      <DependentUpon>Form_SelectActivities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_SelectDevice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,8 +69,12 @@
     <Compile Include="Form_Start.Designer.cs">
       <DependentUpon>Form_Start.cs</DependentUpon>
     </Compile>
+    <Compile Include="PreviouslyUploadedActivities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_SelectActivities.resx">
+      <DependentUpon>Form_SelectActivities.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_SelectDevice.resx">
       <DependentUpon>Form_SelectDevice.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,6 +90,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
