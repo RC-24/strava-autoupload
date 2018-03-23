@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiUtils.cs" />
     <Compile Include="FileUtils.cs" />
     <Compile Include="Form_SelectActivities.cs">
       <SubType>Form</SubType>

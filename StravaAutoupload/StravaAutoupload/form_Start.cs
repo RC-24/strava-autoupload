@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,6 +64,25 @@ namespace StravaAutoupload {
                 _activitiesToUpload.Clear();
             }
             _activitiesToUpload = _allNewActivities;
+
+            UploadActivities();
+        }
+
+        private void UploadActivities() {
+            foreach(var activity in _activitiesToUpload) {
+                var response = ApiUtils.UploadActivity(activity, true);
+                if (!response.Result.IsSuccessStatusCode) {
+                    MessageBox.Show(String.Format("Error uploading file [{0}].\n\nError=[{1}]\n\nThe Application will now close.",
+                        activity.Name, response.Result.Content.ReadAsStringAsync().Result), "Strava Autoupload - Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Dispose();
+                    Environment.Exit(0);
+                    Application.Exit();
+                }
+            }
+
+            MessageBox.Show(String.Format("{0} activit{1} uploaded successfully.", _activitiesToUpload.Count, 
+                (_activitiesToUpload.Count > 1) ? "ies": "y"));
         }
 
         private void ConfigureSelectActivitiesButton() {
@@ -144,6 +164,7 @@ namespace StravaAutoupload {
             }
             _activitiesToUpload = selectActivitiesForm.GetActivitiesToUpload();
             selectActivitiesForm.Dispose();
+            UploadActivities();
         }
 
         private IList<FileInfo> GetActivitiesFromDevice() {
